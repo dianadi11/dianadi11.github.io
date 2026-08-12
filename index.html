@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diana Daulet — Platform Engineer</title>
+<meta name="description" content="Platform engineer running multi-region Kubernetes in production and building AI agents that do real platform work.">
+<style>
+  :root {
+    --bg: #faf6ef;
+    --bg-card: #fffdf8;
+    --border: #e7ddcd;
+    --text: #2b2620;
+    --text-dim: #6f675c;
+    --accent: #b85c3c;
+    --accent-deep: #9c4a2e;
+    --accent-soft: rgba(184, 92, 60, 0.09);
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --mono: "SF Mono", Menlo, Consolas, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- Nav ---- */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(250, 246, 239, 0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; padding-bottom: 16px; }
+  .logo { font-family: var(--serif); font-size: 1.05rem; color: var(--text); text-decoration: none; font-weight: 600; letter-spacing: 0.01em; }
+  .logo em { color: var(--accent); font-style: normal; }
+  nav ul { display: flex; gap: 26px; list-style: none; }
+  nav a:not(.logo) { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: color .15s; }
+  nav a:not(.logo):hover { color: var(--accent); }
+  @media (max-width: 560px) {
+    nav .wrap { flex-wrap: wrap; justify-content: center; gap: 4px 16px; }
+    nav ul { gap: 16px; }
+    nav a:not(.logo) { font-size: 0.85rem; }
+  }
+
+  /* ---- Hero ---- */
+  header { padding: 84px 0 72px; }
+  .hero { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+  @media (max-width: 700px) { .hero { grid-template-columns: 1fr; } .portrait-col { order: -1; justify-self: center; } }
+  .kicker {
+    font-family: var(--sans); color: var(--accent-deep); font-size: 0.8rem;
+    text-transform: uppercase; letter-spacing: 0.16em; font-weight: 600; margin-bottom: 18px;
+  }
+  h1 { font-family: var(--serif); font-size: clamp(2.5rem, 6.5vw, 3.8rem); line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 20px; font-weight: 600; }
+  .tagline { font-family: var(--serif); font-size: clamp(1.1rem, 2.6vw, 1.3rem); color: var(--text-dim); max-width: 560px; margin-bottom: 26px; }
+  .tagline strong { color: var(--text); font-weight: 600; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 0.88rem; color: var(--text-dim); }
+  .hero-meta span::before { content: "— "; color: var(--accent); }
+  .cta-row { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 11px 24px; border-radius: 999px; text-decoration: none;
+    font-size: 0.95rem; font-weight: 600; transition: transform .12s, background .15s, color .15s, border-color .15s;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: #fffdf8; }
+  .btn-primary:hover { background: var(--accent-deep); }
+  .btn-ghost { border: 1px solid var(--border); color: var(--text); background: var(--bg-card); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ---- Hero vitals panel ---- */
+  .vitals {
+    width: min(400px, 88vw);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 22px 44px -18px rgba(90, 62, 40, 0.35);
+    padding: 24px 26px 18px;
+    transform: rotate(1.2deg);
+    transition: transform .2s;
+  }
+  .vitals:hover { transform: rotate(0deg); }
+  .vitals .panel-title {
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.16em;
+    color: var(--accent-deep); font-weight: 700; margin-bottom: 6px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .vitals .panel-title::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%;
+    background: #7a9e7e; box-shadow: 0 0 0 3px rgba(122, 158, 126, 0.25);
+  }
+  .vital { padding: 11px 0 7px; border-bottom: 1px dashed var(--border); }
+  .vital:last-of-type { border-bottom: none; }
+  .vital-row { display: flex; justify-content: space-between; align-items: baseline; }
+  .vital .lbl { font-size: 0.86rem; color: var(--text-dim); }
+  .vital .val { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--accent-deep); white-space: nowrap; }
+  .vital .val.good { color: #5d8161; }
+  .vital svg { width: 100%; height: 26px; display: block; margin-top: 4px; overflow: visible; }
+  .vital svg path {
+    fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 400; stroke-dashoffset: 400;
+    animation: draw 1.4s ease-out forwards;
+  }
+  .vital:nth-of-type(2) svg path { animation-delay: .2s; }
+  .vital:nth-of-type(3) svg path { animation-delay: .4s; }
+  .vital:nth-of-type(4) svg path { animation-delay: .6s; }
+  .vitals .panel-foot { font-family: var(--serif); font-style: italic; font-size: 0.78rem; color: var(--text-dim); padding-top: 10px; text-align: right; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (max-width: 560px) { .vitals { transform: none; } .alert-card { font-size: 0.72rem; } }
+
+  /* ---- Polaroid (About) ---- */
+  .about-grid { display: grid; grid-template-columns: 1fr 250px; gap: 44px; align-items: start; }
+  @media (max-width: 700px) { .about-grid { grid-template-columns: 1fr; } .polaroid { margin: 8px auto 0; } }
+  .polaroid {
+    background: #fffdf8; padding: 12px 12px 14px; border: 1px solid var(--border);
+    box-shadow: 0 16px 34px -16px rgba(90, 62, 40, 0.4);
+    transform: rotate(2.6deg); transition: transform .2s;
+    width: 250px; position: relative; margin-top: 14px;
+  }
+  .polaroid:hover { transform: rotate(0.5deg) scale(1.02); }
+  .polaroid::before {
+    content: ""; position: absolute; top: -12px; left: 50%; transform: translateX(-50%) rotate(-2deg);
+    width: 92px; height: 26px; background: rgba(227, 178, 92, 0.35);
+    border-left: 1px dashed rgba(90,62,40,.15); border-right: 1px dashed rgba(90,62,40,.15);
+  }
+  .polaroid img { width: 100%; height: 250px; object-fit: cover; display: block; }
+  .polaroid figcaption {
+    font-family: var(--serif); font-style: italic; text-align: center;
+    color: var(--text-dim); font-size: 0.88rem; padding-top: 10px;
+  }
+
+  /* ---- Alert card (Contact) ---- */
+  .alert-card {
+    max-width: 560px; margin: 0 auto 30px; text-align: left;
+    background: #2b2620; border-radius: 12px; overflow: hidden;
+    font-family: var(--mono); font-size: 0.8rem; color: #d9cfc2;
+    box-shadow: 0 18px 38px -18px rgba(90, 62, 40, 0.45);
+  }
+  .alert-head { display: flex; align-items: center; gap: 9px; padding: 11px 16px; background: #221e19; font-weight: 600; color: #f0e5d6; }
+  .alert-dot { width: 9px; height: 9px; border-radius: 50%; background: #e0705a; animation: blink 1.4s steps(1) infinite; }
+  .alert-body { padding: 14px 18px 16px; line-height: 1.9; white-space: pre-line; }
+  .alert-body b { color: #e3b25c; font-weight: 600; }
+  .alert-body a { color: #8fbf6f; text-decoration: none; }
+  .alert-body a:hover { text-decoration: underline; }
+
+  /* ---- Sections ---- */
+  section { padding: 60px 0; border-top: 1px solid var(--border); }
+  h2 { font-family: var(--serif); font-size: 1.7rem; margin-bottom: 10px; font-weight: 600; }
+  h2::after { content: ""; display: block; width: 44px; height: 3px; background: var(--accent); border-radius: 2px; margin-top: 10px; }
+  .section-sub { color: var(--text-dim); margin: 18px 0 34px; max-width: 640px; }
+
+  /* ---- About ---- */
+  .about { max-width: 680px; display: grid; gap: 18px; margin-top: 18px; }
+  .about p { font-size: 1.03rem; }
+  .timeline { margin-top: 40px; border-left: 2px solid var(--border); padding-left: 26px; display: flex; flex-direction: column; gap: 20px; }
+  .tl-item { position: relative; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -33px; top: 8px;
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .tl-item h3 { font-family: var(--serif); font-size: 1.08rem; font-weight: 600; }
+  .tl-item h3 span { color: var(--accent-deep); }
+  .tl-item small { font-size: 0.8rem; color: var(--text-dim); display: block; text-transform: uppercase; letter-spacing: 0.08em; }
+  .tl-item p { color: var(--text-dim); font-size: 0.93rem; margin-top: 2px; }
+
+  /* ---- Projects ---- */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 28px; display: flex; flex-direction: column; gap: 12px;
+    box-shadow: 0 10px 26px -20px rgba(90, 62, 40, 0.3);
+    transition: border-color .15s, transform .12s, box-shadow .15s;
+  }
+  .card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 16px 32px -20px rgba(90, 62, 40, 0.4); }
+  .card h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; }
+  .card .prob { color: var(--text-dim); font-size: 0.92rem; }
+  .card .prob b { color: var(--text); font-weight: 600; }
+  .card p { color: var(--text-dim); font-size: 0.92rem; flex: 1; }
+  .card .result {
+    font-size: 0.82rem; font-weight: 600; color: var(--accent-deep); background: var(--accent-soft);
+    border-radius: 999px; padding: 6px 14px; align-self: flex-start;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 0.72rem; color: var(--text-dim); border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px; background: var(--bg); }
+
+  /* ---- Skills ---- */
+  .skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+  .skill-group { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; }
+  .skill-group h3 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-deep); margin-bottom: 2px; font-weight: 700; }
+  .skill-group h3 .n { color: var(--text-dim); font-weight: 600; margin-right: 6px; }
+  .skill-group .tagline { font-family: var(--serif); font-style: italic; font-size: 0.84rem; color: var(--text-dim); margin-bottom: 12px; }
+  .skill-group ul { list-style: none; }
+  .skill-group li { font-size: 0.93rem; padding: 3px 0; }
+  .lab-note { margin-top: 28px; color: var(--text-dim); font-size: 0.9rem; border-left: 3px solid var(--accent); padding-left: 16px; font-style: italic; font-family: var(--serif); }
+
+  /* ---- Certs ---- */
+  .certs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .cert {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px;
+    font-size: 0.92rem;
+  }
+  .cert::before { content: "✓"; color: var(--accent); font-weight: 700; font-size: 1.05rem; }
+
+  /* ---- Contact ---- */
+  .contact-box { text-align: center; padding-top: 20px; padding-bottom: 10px; }
+  .contact-box h2 { display: inline-block; }
+  .contact-box h2::after { margin-left: auto; margin-right: auto; }
+  .contact-box p { color: var(--text-dim); max-width: 520px; margin: 14px auto 28px; }
+
+  footer { border-top: 1px solid var(--border); padding: 30px 0; text-align: center; color: var(--text-dim); font-size: 0.84rem; font-family: var(--serif); font-style: italic; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">Diana <em>Daulet</em></a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Stack</a></li>
+      <li><a href="#certs">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap hero">
+    <div>
+      <div class="kicker">Platform · DevOps · Cloud Infrastructure · SRE</div>
+      <h1>Diana Daulet</h1>
+      <p class="tagline">Platform engineer who runs <strong>multi-region Kubernetes in production</strong> and builds <strong>AI agents that do real platform work</strong>.</p>
+      <div class="hero-meta">
+        <span>Chicago, IL</span>
+        <span>~5 years in platform &amp; DevOps</span>
+        <span>CKA · CKAD · AWS · GCP · Terraform</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:diana.daulet.it@gmail.com">Get in touch</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/dianadauletit" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div class="vitals" role="img" aria-label="Platform vitals: deployment failures down 40%, cloud spend down 25%, on-call triage 20 minutes faster, static credentials at zero.">
+      <div class="panel-title">Platform vitals · all systems calm</div>
+      <div class="vital">
+        <div class="vital-row"><span class="lbl">deployment failures</span><span class="val good">−40%</span></div>
+        <svg viewBox="0 0 340 26" preserveAspectRatio="none"><path stroke="#7a9e7e" d="M2 6 L40 9 L75 7 L110 12 L145 10 L180 15 L215 14 L250 19 L285 18 L338 22"/></svg>
+      </div>
+      <div class="vital">
+        <div class="vital-row"><span class="lbl">EKS compute spend</span><span class="val good">−25%</span></div>
+        <svg viewBox="0 0 340 26" preserveAspectRatio="none"><path stroke="#7a9e7e" d="M2 5 L45 6 L80 4 L115 8 L150 13 L185 11 L220 16 L255 15 L290 19 L338 20"/></svg>
+      </div>
+      <div class="vital">
+        <div class="vital-row"><span class="lbl">on-call triage per incident</span><span class="val good">−20 min</span></div>
+        <svg viewBox="0 0 340 26" preserveAspectRatio="none"><path stroke="#7a9e7e" d="M2 4 L40 7 L75 5 L110 10 L145 8 L180 14 L215 12 L250 17 L285 20 L338 21"/></svg>
+      </div>
+      <div class="vital">
+        <div class="vital-row"><span class="lbl">static credentials in CI</span><span class="val good">0</span></div>
+        <svg viewBox="0 0 340 26" preserveAspectRatio="none"><path stroke="#b85c3c" d="M2 20 L60 20 L70 8 L80 22 L90 20 L338 20"/></svg>
+      </div>
+      <div class="panel-foot">real numbers, from real production</div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <h2>Who I am</h2>
+    <div class="about-grid">
+      <div class="about">
+        <p>I'm a platform engineer in Chicago. I got my start running game backends at Zynga — a shared Kubernetes platform behind live-service games with millions of daily players, where being on-call during a title launch teaches you very quickly what "production" means.</p>
+        <p>Today I work on Altium 365's cloud platform — multi-region EKS across the US, EU, and APAC, where data residency shapes every architecture decision. The work I like most is platform work in the truest sense: building paved roads so development teams ship their own changes safely, instead of filing tickets and waiting on me.</p>
+        <p>The thing that makes me a little different: I build AI agents that do real operational work. My incident-response agent investigates production alerts before the on-call engineer even opens a laptop — and it's built human-in-the-loop, because the agent suggests and the engineer decides. I care a lot about the difference between AI that demos well and AI you can trust on-call.</p>
+        <p>Outside of work hours you'll find me in my homelab, breaking and rebuilding things — Istio, Velero, FluxCD — before I'd ever claim them in production.</p>
+      </div>
+      <figure class="polaroid">
+        <img src="photo.jpg" alt="Diana Daulet">
+        <figcaption>Chicago · usually near coffee</figcaption>
+      </figure>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <h3>Platform Engineer · <span>Altium</span></h3>
+        <small>Oct 2023 – present · San Diego, CA</small>
+        <p>Altium 365 cloud platform — the paved road engineering teams ship on: GitOps delivery, security with zero static credentials, and an AI agent riding first response.</p>
+      </div>
+      <div class="tl-item">
+        <h3>DevOps Engineer · <span>Zynga</span></h3>
+        <small>Sep 2021 – Oct 2023 · Chicago</small>
+        <p>Shared Kubernetes platform behind live-service game backends — millions of daily players, and a pager that stayed calm through title launches.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2>Projects</h2>
+    <p class="section-sub">The work I'm proudest of — each one a real production problem, and the number it moved.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>AI incident-response agent</h3>
+        <p class="prob"><b>Problem:</b> every alert started from zero — on-call opened dashboards, pulled logs, and guessed at a cause before doing anything.</p>
+        <p>I built an agent on Claude Code that does that first pass automatically: when an alert fires, it ingests the firing service's metrics and logs and posts a likely-cause summary to on-call. Deliberately human-in-the-loop — it suggests, the engineer decides.</p>
+        <div class="result">15–20 min saved per incident</div>
+        <div class="tags"><span class="tag">AI agents</span><span class="tag">Claude Code</span><span class="tag">Python</span><span class="tag">on-call</span></div>
+      </div>
+      <div class="card">
+        <h3>Karpenter migration</h3>
+        <p class="prob"><b>Problem:</b> fixed node groups meant paying for capacity we weren't using, in three regions at once.</p>
+        <p>I replaced Cluster Autoscaler with Karpenter across all regions — just-in-time node provisioning and consolidation instead of static groups, sized to what workloads actually request.</p>
+        <div class="result">~25% EKS compute cut</div>
+        <div class="tags"><span class="tag">Karpenter</span><span class="tag">EKS</span><span class="tag">cost</span><span class="tag">multi-region</span></div>
+      </div>
+      <div class="card">
+        <h3>GitOps delivery at scale</h3>
+        <p class="prob"><b>Problem:</b> 50+ microservices deployed by hand-run Helm — slow, error-prone, and hard to audit.</p>
+        <p>I migrated the fleet to ArgoCD GitOps pipelines: every deploy reviewed in Git, revertable in one commit, and consistent across clusters. Paired with OIDC auth so the pipelines run on short-lived credentials — no static keys anywhere.</p>
+        <div class="result">deployment failures down 40%</div>
+        <div class="tags"><span class="tag">ArgoCD</span><span class="tag">GitOps</span><span class="tag">OIDC</span><span class="tag">Helm</span></div>
+      </div>
+      <div class="card">
+        <h3>The 4-second query hunt</h3>
+        <p class="prob"><b>Problem:</b> key endpoints were slow, and nobody could say exactly why.</p>
+        <p>I followed OpenTelemetry traces through the request path until they pointed at unindexed database lookups behind the hottest endpoints — then got them fixed and watched the latency graph drop.</p>
+        <div class="result">query latency ~4s → ~1s</div>
+        <div class="tags"><span class="tag">OpenTelemetry</span><span class="tag">tracing</span><span class="tag">PostgreSQL</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Stack</h2>
+    <p class="section-sub">Organized the way a change actually travels — from provisioning to production to the pager.</p>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h3><span class="n">01</span>Provision</h3>
+        <p class="tagline">everything is code, nothing is clicked</p>
+        <ul><li>Terraform (certified)</li><li>AWS — multi-region · GCP</li><li>CloudFormation · Ansible</li><li>Linux · Bash · Python</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3><span class="n">02</span>Ship</h3>
+        <p class="tagline">every deploy reviewed, every image scanned</p>
+        <ul><li>ArgoCD · GitOps</li><li>GitHub Actions · GitLab CI</li><li>Helm</li><li>Trivy image scanning</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3><span class="n">03</span>Run</h3>
+        <p class="tagline">orchestration that right-sizes itself</p>
+        <ul><li>Kubernetes (EKS)</li><li>Karpenter · HPA</li><li>Gateway API</li><li>Docker</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3><span class="n">04</span>Observe</h3>
+        <p class="tagline">see it break before users do</p>
+        <ul><li>Prometheus · Grafana</li><li>Datadog · OpenTelemetry</li><li>EFK stack</li><li>Incident response · on-call</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3><span class="n">05</span>Secure</h3>
+        <p class="tagline">least privilege, short-lived, everywhere</p>
+        <ul><li>OIDC · IRSA · IAM</li><li>HashiCorp Vault</li><li>AWS Secrets Manager</li><li>Aqua Security</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3><span class="n">06</span>Automate with AI</h3>
+        <p class="tagline">agents that do real platform work</p>
+        <ul><li>AI agents &amp; tool use</li><li>Claude Code + custom skills</li><li>Context engineering</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3><span class="n">07</span>Store</h3>
+        <p class="tagline">state, handled with respect</p>
+        <ul><li>Amazon RDS · PostgreSQL</li><li>MySQL · MongoDB</li><li>DocumentDB</li></ul>
+      </div>
+    </div>
+    <p class="lab-note"><strong>In the homelab:</strong> Istio, Velero, and FluxCD — hands-on personal projects, not yet production. I'm upfront about the difference.</p>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="wrap">
+    <h2>Certifications</h2>
+    <div class="certs" style="margin-top: 26px">
+      <div class="cert">Certified Kubernetes Administrator (CKA)</div>
+      <div class="cert">Certified Kubernetes Application Developer (CKAD)</div>
+      <div class="cert">AWS Solutions Architect – Associate</div>
+      <div class="cert">AWS Cloud Practitioner</div>
+      <div class="cert">GCP Associate Cloud Engineer</div>
+      <div class="cert">HashiCorp Terraform Associate</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-box">
+    <h2>Let's talk</h2>
+    <p>Based in Chicago, open to platform, DevOps, cloud infrastructure, and SRE roles. The fastest way to reach me is email.</p>
+    <div class="alert-card" role="img" aria-label="Joke monitoring alert: Diana is open to work, runbook says email her">
+      <div class="alert-head"><span class="alert-dot"></span> FIRING · open_to_work &gt; 0</div>
+      <div class="alert-body">severity: <b>P1</b> <span style="color:#8a8175">(for the right team)</span>
+service:  <b>diana.daulet</b> · region: chicago / remote
+runbook:  <a href="mailto:diana.daulet.it@gmail.com">→ email diana.daulet.it@gmail.com</a>  <span style="color:#8a8175"># resolves the alert</span></div>
+    </div>
+    <div class="cta-row" style="justify-content:center">
+      <a class="btn btn-primary" href="mailto:diana.daulet.it@gmail.com">diana.daulet.it@gmail.com</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/dianadauletit" target="_blank" rel="noopener">linkedin.com/in/dianadauletit</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Diana Daulet · Chicago, IL · plain HTML, zero frameworks — that's why this site has 100% uptime</div>
+</footer>
+
+</body>
+</html>
