@@ -249,10 +249,10 @@
         <a class="btn btn-ghost" href="https://www.linkedin.com/in/dianadauletit" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
-    <div class="vitals" role="img" aria-label="Platform vitals: deployment failures down 40%, cloud spend down 25%, on-call triage 20 minutes faster, static credentials at zero.">
+    <div class="vitals" role="img" aria-label="Platform vitals: change-failure rate down 38%, cloud spend down 25%, on-call triage 20 minutes faster, static credentials at zero.">
       <div class="panel-title">Platform vitals · all systems calm</div>
       <div class="vital">
-        <div class="vital-row"><span class="lbl">deployment failures</span><span class="val good">−40%</span></div>
+        <div class="vital-row"><span class="lbl">change-failure rate</span><span class="val good">−38%</span></div>
         <svg viewBox="0 0 340 26" preserveAspectRatio="none"><path stroke="#7a9e7e" d="M2 6 L40 9 L75 7 L110 12 L145 10 L180 15 L215 14 L250 19 L285 18 L338 22"/></svg>
       </div>
       <div class="vital">
@@ -310,7 +310,7 @@
       <div class="card">
         <h3>AI incident-response agent</h3>
         <p class="prob"><b>Problem:</b> every alert started from zero — on-call opened dashboards, pulled logs, and guessed at a cause before doing anything.</p>
-        <p>I built an agent on Claude Code that does that first pass automatically: when an alert fires, it ingests the firing service's metrics and logs and posts a likely-cause summary to on-call. Deliberately human-in-the-loop — it suggests, the engineer decides.</p>
+        <p>I built an assistant on Claude Code with custom skills that does that first pass automatically: when an alert fires, it pulls the related metrics, logs, and recent deploys and drafts a probable root-cause summary for on-call. Deliberately human-in-the-loop — it suggests, the engineer decides.</p>
         <div class="result">15–20 min saved per incident</div>
         <div class="tags"><span class="tag">AI agents</span><span class="tag">Claude Code</span><span class="tag">Python</span><span class="tag">on-call</span></div>
       </div>
@@ -324,15 +324,15 @@
       <div class="card">
         <h3>GitOps delivery at scale</h3>
         <p class="prob"><b>Problem:</b> 50+ microservices deployed by hand-run Helm — slow, error-prone, and hard to audit.</p>
-        <p>I migrated the fleet to ArgoCD GitOps pipelines: every deploy reviewed in Git, revertable in one commit, and consistent across clusters. Paired with OIDC auth so the pipelines run on short-lived credentials — no static keys anywhere.</p>
-        <div class="result">deployment failures down 40%</div>
+        <p>I migrated the fleet to ArgoCD GitOps: automated sync, drift detection, one-click rollback, every deploy reviewed in Git. Paired with OIDC auth so the pipelines run on short-lived credentials — no static keys anywhere.</p>
+        <div class="result">change-failure rate down 38%</div>
         <div class="tags"><span class="tag">ArgoCD</span><span class="tag">GitOps</span><span class="tag">OIDC</span><span class="tag">Helm</span></div>
       </div>
       <div class="card">
-        <h3>The 4-second query hunt</h3>
-        <p class="prob"><b>Problem:</b> key endpoints were slow, and nobody could say exactly why.</p>
-        <p>I followed OpenTelemetry traces through the request path until they pointed at unindexed database lookups behind the hottest endpoints — then got them fixed and watched the latency graph drop.</p>
-        <div class="result">query latency ~4s → ~1s</div>
+        <h3>The slow-query hunt</h3>
+        <p class="prob"><b>Problem:</b> a key endpoint was slow, and nobody could say exactly why.</p>
+        <p>I followed OpenTelemetry traces through the request path until they pointed at an unindexed database lookup behind the endpoint — then got it fixed and watched the latency graph drop.</p>
+        <div class="result">query latency ~1.2s → ~180ms</div>
         <div class="tags"><span class="tag">OpenTelemetry</span><span class="tag">tracing</span><span class="tag">PostgreSQL</span></div>
       </div>
     </div>
