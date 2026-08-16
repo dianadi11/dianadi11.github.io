@@ -114,26 +114,8 @@
   @keyframes blink { 50% { opacity: 0; } }
   @media (max-width: 560px) { .vitals { transform: none; } .alert-card { font-size: 0.72rem; } }
 
-  /* ---- Polaroid (About) ---- */
-  .about-grid { display: grid; grid-template-columns: 1fr 250px; gap: 44px; align-items: start; }
-  @media (max-width: 700px) { .about-grid { grid-template-columns: 1fr; } .polaroid { margin: 8px auto 0; } }
-  .polaroid {
-    background: #fffdf8; padding: 12px 12px 14px; border: 1px solid var(--border);
-    box-shadow: 0 16px 34px -16px rgba(90, 62, 40, 0.4);
-    transform: rotate(2.6deg); transition: transform .2s;
-    width: 250px; position: relative; margin-top: 14px;
-  }
-  .polaroid:hover { transform: rotate(0.5deg) scale(1.02); }
-  .polaroid::before {
-    content: ""; position: absolute; top: -12px; left: 50%; transform: translateX(-50%) rotate(-2deg);
-    width: 92px; height: 26px; background: rgba(227, 178, 92, 0.35);
-    border-left: 1px dashed rgba(90,62,40,.15); border-right: 1px dashed rgba(90,62,40,.15);
-  }
-  .polaroid img { width: 100%; height: 250px; object-fit: cover; display: block; }
-  .polaroid figcaption {
-    font-family: var(--serif); font-style: italic; text-align: center;
-    color: var(--text-dim); font-size: 0.88rem; padding-top: 10px;
-  }
+  /* ---- About ---- */
+  .about-grid { max-width: 620px; }
 
   /* ---- Alert card (Contact) ---- */
   .alert-card {
@@ -249,7 +231,7 @@
         <a class="btn btn-ghost" href="https://www.linkedin.com/in/dianadauletit" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
-    <div class="vitals" role="img" aria-label="Platform vitals: change-failure rate down 38%, cloud spend down 25%, on-call triage 20 minutes faster, static credentials at zero.">
+    <div class="vitals" role="img" aria-label="Platform vitals: change-failure rate down 38%, cloud spend down 25%, on-call triage 15 to 20 minutes faster, static credentials at zero.">
       <div class="panel-title">Platform vitals · all systems calm</div>
       <div class="vital">
         <div class="vital-row"><span class="lbl">change-failure rate</span><span class="val good">−38%</span></div>
@@ -260,7 +242,7 @@
         <svg viewBox="0 0 340 26" preserveAspectRatio="none"><path stroke="#7a9e7e" d="M2 5 L45 6 L80 4 L115 8 L150 13 L185 11 L220 16 L255 15 L290 19 L338 20"/></svg>
       </div>
       <div class="vital">
-        <div class="vital-row"><span class="lbl">on-call triage per incident</span><span class="val good">−20 min</span></div>
+        <div class="vital-row"><span class="lbl">on-call triage per incident</span><span class="val good">−15–20 min</span></div>
         <svg viewBox="0 0 340 26" preserveAspectRatio="none"><path stroke="#7a9e7e" d="M2 4 L40 7 L75 5 L110 10 L145 8 L180 14 L215 12 L250 17 L285 20 L338 21"/></svg>
       </div>
       <div class="vital">
@@ -282,10 +264,6 @@
         <p>The thing that makes me a little different: I build AI agents that do real operational work. My incident-response agent investigates production alerts before the on-call engineer even opens a laptop — and it's built human-in-the-loop, because the agent suggests and the engineer decides. I care a lot about the difference between AI that demos well and AI you can trust on-call.</p>
         <p>Outside of work hours you'll find me in my homelab, breaking and rebuilding things — Istio, Velero, FluxCD — before I'd ever claim them in production.</p>
       </div>
-      <figure class="polaroid">
-        <img src="photo.jpg" alt="Diana Daulet">
-        <figcaption>Chicago · usually near coffee</figcaption>
-      </figure>
     </div>
     <div class="timeline">
       <div class="tl-item">
@@ -404,8 +382,7 @@
     <p>Based in Chicago, open to platform, DevOps, cloud infrastructure, and SRE roles. The fastest way to reach me is email.</p>
     <div class="alert-card" role="img" aria-label="Joke monitoring alert: Diana is open to work, runbook says email her">
       <div class="alert-head"><span class="alert-dot"></span> FIRING · open_to_work &gt; 0</div>
-      <div class="alert-body">severity: <b>P1</b> <span style="color:#8a8175">(for the right team)</span>
-service:  <b>diana.daulet</b> · region: chicago / remote
+      <div class="alert-body">service:  <b>diana.daulet</b> · region: chicago / remote
 runbook:  <a href="mailto:diana.daulet.it@gmail.com">→ email diana.daulet.it@gmail.com</a>  <span style="color:#8a8175"># resolves the alert</span></div>
     </div>
     <div class="cta-row" style="justify-content:center">
@@ -416,7 +393,7 @@ runbook:  <a href="mailto:diana.daulet.it@gmail.com">→ email diana.daulet.it@g
 </section>
 
 <footer>
-  <div class="wrap">Diana Daulet · Chicago, IL · plain HTML, zero frameworks — that's why this site has 100% uptime</div>
+  <div class="wrap">Diana Daulet · Chicago, IL · hand-written HTML · no frameworks, no build step</div>
 </footer>
 
 </body>
