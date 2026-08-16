@@ -117,15 +117,8 @@
   /* ---- About (runbook) ---- */
   .about-grid { display: grid; grid-template-columns: 1fr 250px; gap: 44px; align-items: start; }
   @media (max-width: 700px) { .about-grid { grid-template-columns: 1fr; } .polaroid { margin: 8px auto 0; } }
-  .rb { border-left: 2px solid var(--border); padding-left: 18px; margin-bottom: 24px; transition: border-color .15s; }
-  .rb:last-child { margin-bottom: 0; }
-  .rb:hover { border-left-color: var(--accent); }
-  .rb-key {
-    display: block; font-family: var(--mono); font-size: 0.72rem;
-    text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent-deep);
-    font-weight: 700; margin-bottom: 7px;
-  }
-  .rb p { margin: 0; }
+  .about p { margin-bottom: 16px; }
+  .about p:last-child { margin-bottom: 0; }
   .polaroid {
     background: #fffdf8; padding: 12px 12px 14px; border: 1px solid var(--border);
     box-shadow: 0 16px 34px -16px rgba(90, 62, 40, 0.4);
@@ -293,25 +286,13 @@
 
 <section id="about">
   <div class="wrap">
-    <h2>Who I am</h2>
+    <h2>whoami</h2>
     <div class="about-grid">
       <div class="about">
-        <div class="rb">
-          <span class="rb-key">whoami</span>
-          <p>I'm a platform engineer with 5 years of experience. I got my start running game backends at Zynga &mdash; a shared Kubernetes platform behind live-service games with millions of daily players, where being on-call during a title launch teaches you very quickly what "production" means.</p>
-        </div>
-        <div class="rb">
-          <span class="rb-key">current posting</span>
-          <p>Today I work at Altium, an enterprise software company &mdash; multi-region EKS across the US, EU, and APAC, where data residency shapes every architecture decision. The work I like most is platform work in the truest sense: building paved roads so development teams ship their own changes safely, instead of filing tickets and waiting on ops.</p>
-        </div>
-        <div class="rb">
-          <span class="rb-key">currently implementing</span>
-          <p>AI agents that do real operational work. My incident-response agent investigates production alerts before the on-call engineer even opens a laptop &mdash; and it's built human-in-the-loop, because the agent suggests and the engineer decides. I care a lot about the difference between AI that demos well and AI you can trust on-call.</p>
-        </div>
-        <div class="rb">
-          <span class="rb-key">not claimed in production</span>
-          <p>Outside of work hours you'll find me in my homelab, breaking and rebuilding things &mdash; widening what I can actually defend, and evolving what I know before I'd ever claim it in production.</p>
-        </div>
+        <p>I'm a platform engineer with 5 years of experience. I got my start running game backends at Zynga &mdash; a shared Kubernetes platform behind live-service games with millions of daily players, where being on-call during a title launch teaches you very quickly what "production" means.</p>
+        <p>Today I work at Altium, an enterprise software company &mdash; multi-region EKS across the US, EU, and APAC, where data residency shapes every architecture decision. The work I like most is platform work in the truest sense: building paved roads so development teams ship their own changes safely, instead of filing tickets and waiting on ops.</p>
+        <p>AI agents that do real operational work. My incident-response agent investigates production alerts before the on-call engineer even opens a laptop &mdash; and it's built human-in-the-loop, because the agent suggests and the engineer decides. I care a lot about the difference between AI that demos well and AI you can trust on-call.</p>
+        <p>Outside of work hours you'll find me in my homelab, breaking and rebuilding things &mdash; widening what I can actually defend, and evolving what I know before I'd ever claim it in production.</p>
       </div>
       <figure class="polaroid">
         <img src="photo.jpg" alt="Diana Daulet">
